@@ -1,6 +1,6 @@
 # grammarbot
 
-
+A Go API client for [GrammrBot API](https://www.grammarbot.io/)
 
 ## Installation
 
