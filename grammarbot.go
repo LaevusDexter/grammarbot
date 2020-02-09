@@ -11,7 +11,7 @@ import (
 
 const MaxLength = 50000
 
-func NewGrammarBot(apiKey string) *GrammarBot {
+func New(apiKey string) *GrammarBot {
 	if apiKey == "" {
 		apiKey = "xyz"
 	}
@@ -140,7 +140,7 @@ func (api GrammarBot) CheckBytes(text []byte) (*Response, error) {
 	return api.Check(b2s(text))
 }
 
-var defaultGrammarBot = *NewGrammarBot("")
+var defaultGrammarBot = *New("")
 
 // Check - Check a given piece of text for grammatical errors.
 func Check(text string) (*Response, error) {
