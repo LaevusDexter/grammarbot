@@ -11,7 +11,7 @@ import (
 
 const MaxLength = 50000
 
-func NewGrammarBot(apiKey string) *GrammarBot {
+func New(apiKey string) *GrammarBot {
 	if apiKey == "" {
 		apiKey = "xyz"
 	}
