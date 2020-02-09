@@ -18,7 +18,7 @@ func NewGrammarBot(apiKey string) *GrammarBot {
 
 	return &GrammarBot{
 		Language: "en-US",
-		ApiKey:   "xyz",
+		ApiKey:   apiKey,
 		BaseURI:  "http://api.grammarbot.io",
 		Version:  "v2",
 		ApiName:  "check",
@@ -125,7 +125,10 @@ func (api GrammarBot) Check(text string) (*Response, error) {
 
 	var result Response
 
-	json.NewDecoder(resp.Body).Decode(&result)
+	err = json.NewDecoder(resp.Body).Decode(&result)
+	if err != nil {
+		return nil, err
+	}
 
 	bufferPool.Put(buf)
 
@@ -133,7 +136,7 @@ func (api GrammarBot) Check(text string) (*Response, error) {
 }
 
 // CheckBytes - Check a given piece of text for grammatical errors.
-func (api *GrammarBot) CheckBytes(text []byte) (*Response, error) {
+func (api GrammarBot) CheckBytes(text []byte) (*Response, error) {
 	return api.Check(b2s(text))
 }
 
